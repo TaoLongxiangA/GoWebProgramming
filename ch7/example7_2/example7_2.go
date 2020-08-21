@@ -9,15 +9,15 @@ import (
 
 type Post struct {
 	XMLName xml.Name `xml:"post"`
-	Id      string   `xml:"id,attr"`
+	Id      string   `xml:"id,attr"` //id属性
 	Content string   `xml:"content"`
 	Author  Author   `xml:"author"`
-	Xml     string   `xml:",innerxml"`
+	Xml     string   `xml:",innerxml"` //原始XML数据
 }
 
 type Author struct {
 	Id   string `xml:"id,attr"`
-	Name string `xml:",chardata"`
+	Name string `xml:",chardata"` //xml元素的字符串数据
 }
 
 func main() {
