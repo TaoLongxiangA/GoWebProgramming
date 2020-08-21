@@ -8,20 +8,21 @@ import (
 )
 
 type Post struct {
-	XMLName xml.Name  `xml:"post"`
-	Id      string    `xml:"id"`
-	Content string    `xml:"content"`
-	Author  Author    `xml:"author"`
-	Comment []Comment `xml:"comments>comment"`
+	XMLName  xml.Name  `xml:"Post"`
+	Id       string    `xml:"id,attr"` //xml属性
+	Content  string    `xml:"content"`
+	Author   Author    `xml:"author"`
+	Xml      string    `xml:",innerxml"`
+	Comments []Comment `xml:"comments>comment"`
 }
 
 type Author struct {
-	Id      string `xml:"id"`
-	Content string `xml:"content"`
+	Id   string `xml:"id,attr"`
+	Name string `xml:",chardata"`
 }
 
 type Comment struct {
-	Id      string `xml:"id"`
+	Id      string `xml:"id,attr"`
 	Content string `xml:"content"`
 	Author  string `xml:"author"`
 }
@@ -52,6 +53,14 @@ func main() {
 				decoder.DecodeElement(&comment, &se)
 				fmt.Println(comment)
 			}
+
+			//test author
+			//case xml.StartElement:
+			//	if se.Name.Local == "author" {
+			//		var author Author
+			//		decoder.DecodeElement(&author, &se)
+			//		fmt.Println(author)
+			//	}
 		}
 	}
 }
