@@ -32,6 +32,7 @@ func main() {
 	xmlFile, err := os.Create("post.xml")
 	if err != nil {
 		fmt.Println("Error creating XML file:", err)
+		return
 	}
 
 	encoder := xml.NewEncoder(xmlFile)
@@ -39,5 +40,6 @@ func main() {
 	err = encoder.Encode(post)
 	if err != nil {
 		fmt.Println("Error encoding XML to file:", err)
+		return
 	}
 }
